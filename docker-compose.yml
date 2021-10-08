@@ -12,8 +12,8 @@ services:
     volumes:
       - .:/usr/src/app
       - /usr/src/app/node_modules
-    # command: yarn start:dev
-    command: yarn typeorm migration:generate -n random -d ./src/database/migrations
+    command: yarn start:dev
+    # command: yarn typeorm migration:generate -n random -d ./src/database/migrations
     ports:
       - '3000:3000'
     depends_on:
