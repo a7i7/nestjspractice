@@ -13,23 +13,23 @@ services:
       - .:/usr/src/app
       - /usr/src/app/node_modules
     command: yarn start:dev
-    # command: yarn typeorm migration:generate -n random -d ./src/database/migrations
+    # command: yarn typeorm migration:generate -n afif -d ./src/database/migrations
     ports:
-      - '3000:3000'
+      - '4000:4000'
     depends_on:
       - db
   db:
     image: postgres
     environment:
-      POSTGRES_DB: nestjspractice
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: '${RDS_DB_NAME}'
+      POSTGRES_USER: '${RDS_USERNAME}'
+      POSTGRES_PASSWORD: '${RDS_PASSWORD}'
     ports:
-      - '5432:5432'
+      - '${RDS_PORT}:${RDS_PORT}'
     volumes:
       - ./pgdata:/var/lib/postgresql/data
 
-      # Start with docker compose
-      # docker ps
-      # docker exec -it b9a9b0817fc9 bash
+      # Connecting to the running postgres instance
+      # docker ps (to figure out container id)
+      # docker exec -it <container_id> bash
       # psql -U postgres
